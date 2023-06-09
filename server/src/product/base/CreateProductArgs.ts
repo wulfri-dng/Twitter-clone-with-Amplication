@@ -9,13 +9,10 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-import { ArgsType, Field } from "@nestjs/graphql";
 import { ProductCreateInput } from "./ProductCreateInput";
 
-@ArgsType()
 class CreateProductArgs {
-  @Field(() => ProductCreateInput, { nullable: false })
-  data!: ProductCreateInput;
+    data!: ProductCreateInput;
 }
 
 export { CreateProductArgs as CreateProductArgs };

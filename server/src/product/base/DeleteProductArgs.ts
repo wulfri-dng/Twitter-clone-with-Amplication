@@ -9,13 +9,10 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-import { ArgsType, Field } from "@nestjs/graphql";
 import { ProductWhereUniqueInput } from "./ProductWhereUniqueInput";
 
-@ArgsType()
 class DeleteProductArgs {
-  @Field(() => ProductWhereUniqueInput, { nullable: false })
-  where!: ProductWhereUniqueInput;
+    where!: ProductWhereUniqueInput;
 }
 
 export { DeleteProductArgs as DeleteProductArgs };
