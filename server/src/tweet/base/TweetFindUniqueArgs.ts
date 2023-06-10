@@ -10,12 +10,12 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { ArgsType, Field } from "@nestjs/graphql";
-import { UserWhereUniqueInput } from "./UserWhereUniqueInput";
+import { TweetWhereUniqueInput } from "./TweetWhereUniqueInput";
 
 @ArgsType()
-class DeleteUserArgs {
-  @Field(() => UserWhereUniqueInput, { nullable: false })
-  where!: UserWhereUniqueInput;
+class TweetFindUniqueArgs {
+  @Field(() => TweetWhereUniqueInput, { nullable: false })
+  where!: TweetWhereUniqueInput;
 }
 
-export { DeleteUserArgs as DeleteUserArgs };
+export { TweetFindUniqueArgs as TweetFindUniqueArgs };

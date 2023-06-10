@@ -17,3 +17,13 @@ model User {
   tweets      Json?
   username    String @unique
 }
+
+model Tweet {
+  comments  Json?
+  content   String?
+  dateTime  DateTime
+  id        String   @id @default(auto()) @map("_id") @mongo.ObjectId
+  likeCount Int?
+  userId    String
+  viewCount Int?
+}
