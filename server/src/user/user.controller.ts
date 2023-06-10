@@ -2,17 +2,32 @@ import * as common from "@nestjs/common";
 import * as swagger from "@nestjs/swagger";
 import { UserService } from "./user.service";
 import { UserControllerBase } from "./base/user.controller.base";
-import { Get, Post, Body, Put, Delete, Param, Controller, UsePipes } from '@nestjs/common';
+import { Get, Post, Query, Body } from "@nestjs/common";
+import { Request } from "express";
+import { UserRegisterModel } from "./types";
 
-@swagger.ApiTags("users")
-@common.Controller("users")
+@swagger.ApiTags("user")
+@common.Controller("user")
 export class UserController extends UserControllerBase {
-  constructor(protected readonly service: UserService) {
-    super(service);
-  }
+    constructor(protected readonly userService: UserService) {
+        super(userService);
+    }
 
-  @Get('user')
-  async findMe(@User('email') email: string): Promise<UserRO> {
-    return await this.userService.findByEmail(email);
-  }
+    @Get("user")
+    async findMe(@Query() request: { email: string }) {
+        console.log(request);
+        return await this.userService.findByEmail(request.email);
+    }
+
+    @Post("login")
+    async userLogin(@Body() data: { userName: string; password: string }) {
+        console.log(data);
+        return await this.userService.userLogin(data);
+    }
+
+    @Post("register")
+    async userRegister(@Body() data: UserRegisterModel) {
+        console.log(data);
+        return await this.userService.userRegister(data);
+    }
 }
