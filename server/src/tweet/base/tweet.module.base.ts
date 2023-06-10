@@ -9,13 +9,11 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-import { ArgsType, Field } from "@nestjs/graphql";
-import { UserWhereUniqueInput } from "./UserWhereUniqueInput";
+import { Module } from "@nestjs/common";
+import { MorganModule } from "nest-morgan";
 
-@ArgsType()
-class DeleteUserArgs {
-  @Field(() => UserWhereUniqueInput, { nullable: false })
-  where!: UserWhereUniqueInput;
-}
-
-export { DeleteUserArgs as DeleteUserArgs };
+@Module({
+  imports: [MorganModule],
+  exports: [MorganModule],
+})
+export class TweetModuleBase {}
