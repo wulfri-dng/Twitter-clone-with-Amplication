@@ -13,12 +13,6 @@ export class UserController extends UserControllerBase {
         super(userService);
     }
 
-    @Get("user")
-    async findMe(@Query() request: { email: string }) {
-        console.log(request);
-        return await this.userService.findByEmail(request.email);
-    }
-
     @Post("login")
     async userLogin(@Body() data: { userName: string; password: string }) {
         console.log(data);

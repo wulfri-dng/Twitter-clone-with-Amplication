@@ -9,10 +9,6 @@ export class UserService extends UserServiceBase {
         super(prisma);
     }
 
-    async findByEmail(email: string) {
-        return "email found " + email;
-    }
-
     async userLogin(data: { userName: string; password: string }) {
         return "user Login " + data.userName + data.password;
     }
