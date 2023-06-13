@@ -22,6 +22,7 @@ const CREATE_INPUT = {
   birthday: new Date(),
   email: "exampleEmail",
   id: "exampleId",
+  name: "exampleName",
   password: "examplePassword",
   username: "exampleUsername",
 };
@@ -29,6 +30,7 @@ const CREATE_RESULT = {
   birthday: new Date(),
   email: "exampleEmail",
   id: "exampleId",
+  name: "exampleName",
   password: "examplePassword",
   username: "exampleUsername",
 };
@@ -37,6 +39,7 @@ const FIND_MANY_RESULT = [
     birthday: new Date(),
     email: "exampleEmail",
     id: "exampleId",
+    name: "exampleName",
     password: "examplePassword",
     username: "exampleUsername",
   },
@@ -45,6 +48,7 @@ const FIND_ONE_RESULT = {
   birthday: new Date(),
   email: "exampleEmail",
   id: "exampleId",
+  name: "exampleName",
   password: "examplePassword",
   username: "exampleUsername",
 };
