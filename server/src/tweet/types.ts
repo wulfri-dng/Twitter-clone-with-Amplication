@@ -1,5 +1,5 @@
 export interface TweetModel {
-    comments: [];
+    comments: string[];
     content: string | null;
     dateTime: Date;
     id: string;

@@ -29,9 +29,11 @@ export class TweetService extends TweetServiceBase {
                     break;
                 }
             }
+
+            updatedTweetList.push(updatedTweet);
         }
 
-        return "All tweets";
+        return updatedTweetList;
     }
 
     async publishTweet(data: {
