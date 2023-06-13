@@ -8,14 +8,14 @@ generator client {
 }
 
 model User {
-  birthday    String
+  birthday    DateTime
   email       String
-  id          String @id @default(auto()) @map("_id") @mongo.ObjectId
+  id          String   @id @default(auto()) @map("_id") @mongo.ObjectId
   likedTweets Json?
   password    String
   roles       Json
   tweets      Json?
-  username    String @unique
+  username    String   @unique
 }
 
 model Tweet {

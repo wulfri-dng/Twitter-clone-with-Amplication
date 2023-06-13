@@ -19,14 +19,14 @@ import { UserService } from "../user.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  birthday: "exampleBirthday",
+  birthday: new Date(),
   email: "exampleEmail",
   id: "exampleId",
   password: "examplePassword",
   username: "exampleUsername",
 };
 const CREATE_RESULT = {
-  birthday: "exampleBirthday",
+  birthday: new Date(),
   email: "exampleEmail",
   id: "exampleId",
   password: "examplePassword",
@@ -34,7 +34,7 @@ const CREATE_RESULT = {
 };
 const FIND_MANY_RESULT = [
   {
-    birthday: "exampleBirthday",
+    birthday: new Date(),
     email: "exampleEmail",
     id: "exampleId",
     password: "examplePassword",
@@ -42,7 +42,7 @@ const FIND_MANY_RESULT = [
   },
 ];
 const FIND_ONE_RESULT = {
-  birthday: "exampleBirthday",
+  birthday: new Date(),
   email: "exampleEmail",
   id: "exampleId",
   password: "examplePassword",
@@ -129,14 +129,22 @@ describe("User", () => {
       .post("/users")
       .send(CREATE_INPUT)
       .expect(HttpStatus.CREATED)
-      .expect(CREATE_RESULT);
+      .expect({
+        ...CREATE_RESULT,
+        birthday: CREATE_RESULT.birthday.toISOString(),
+      });
   });
 
   test("GET /users", async () => {
     await request(app.getHttpServer())
       .get("/users")
       .expect(HttpStatus.OK)
-      .expect([FIND_MANY_RESULT[0]]);
+      .expect([
+        {
+          ...FIND_MANY_RESULT[0],
+          birthday: FIND_MANY_RESULT[0].birthday.toISOString(),
+        },
+      ]);
   });
 
   test("GET /users/:id non existing", async () => {
@@ -154,7 +162,10 @@ describe("User", () => {
     await request(app.getHttpServer())
       .get(`${"/users"}/${existingId}`)
       .expect(HttpStatus.OK)
-      .expect(FIND_ONE_RESULT);
+      .expect({
+        ...FIND_ONE_RESULT,
+        birthday: FIND_ONE_RESULT.birthday.toISOString(),
+      });
   });
 
   test("POST /users existing resource", async () => {
@@ -163,7 +174,10 @@ describe("User", () => {
       .post("/users")
       .send(CREATE_INPUT)
       .expect(HttpStatus.CREATED)
-      .expect(CREATE_RESULT)
+      .expect({
+        ...CREATE_RESULT,
+        birthday: CREATE_RESULT.birthday.toISOString(),
+      })
       .then(function () {
         agent
           .post("/users")
