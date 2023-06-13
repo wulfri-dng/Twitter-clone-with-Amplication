@@ -12,6 +12,7 @@ model User {
   email       String
   id          String   @id @default(auto()) @map("_id") @mongo.ObjectId
   likedTweets Json?
+  name        String?
   password    String
   roles       Json
   tweets      Json?
