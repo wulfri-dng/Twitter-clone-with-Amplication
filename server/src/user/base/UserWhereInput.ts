@@ -11,23 +11,24 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { StringFilter } from "../../util/StringFilter";
+import { DateTimeFilter } from "../../util/DateTimeFilter";
 import { Type } from "class-transformer";
 import { IsOptional } from "class-validator";
+import { StringFilter } from "../../util/StringFilter";
 import { JsonFilter } from "../../util/JsonFilter";
 
 @InputType()
 class UserWhereInput {
   @ApiProperty({
     required: false,
-    type: StringFilter,
+    type: DateTimeFilter,
   })
-  @Type(() => StringFilter)
+  @Type(() => DateTimeFilter)
   @IsOptional()
-  @Field(() => StringFilter, {
+  @Field(() => DateTimeFilter, {
     nullable: true,
   })
-  birthday?: StringFilter;
+  birthday?: DateTimeFilter;
 
   @ApiProperty({
     required: false,
