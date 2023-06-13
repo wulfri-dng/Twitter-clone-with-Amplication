@@ -10,7 +10,26 @@ export class UserService extends UserServiceBase {
     }
 
     async userLogin(data: { userName: string; password: string }) {
-        return "user Login " + data.userName + data.password;
+        try {
+            const user = await this.prisma.user.findUnique({
+                where: {
+                    username: data.userName,
+                },
+            });
+
+            console.log(user);
+
+            if (user?.password === data.password) {
+                return user;
+            } else {
+                return {
+                    err: true,
+                    errMsg: "Check details and try again",
+                };
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     async userRegister(data: UserRegisterModel) {
