@@ -9,11 +9,11 @@ export class UserService extends UserServiceBase {
         super(prisma);
     }
 
-    async userLogin(data: { userName: string; password: string }) {
+    async userLogin(data: { username: string; password: string }) {
         try {
             const user = await this.prisma.user.findUnique({
                 where: {
-                    username: data.userName,
+                    username: data.username,
                 },
             });
 
@@ -33,21 +33,47 @@ export class UserService extends UserServiceBase {
     }
 
     async userRegister(data: UserRegisterModel) {
-        const userBirthday = new Date(
-            Number(data.year),
-            Number(data.month) - 1,
-            Number(data.date) + 1,
-        );
+        try {
+            const userBirthday = new Date(
+                Number(data.year),
+                Number(data.month) - 1,
+                Number(data.date) + 1,
+            );
 
-        const newUser = {
-            username: data.username,
-            email: data.email,
-            password: data.password,
-            birthday: userBirthday,
-            tweets: [],
-            likedTweets: [],
-        };
+            const newUser = {
+                username: data.username,
+                email: data.email,
+                password: data.password,
+                birthday: userBirthday.toISOString(),
+                tweets: [],
+                likedTweets: [],
+                roles: ["user"],
+            };
 
-        return newUser;
+            const user = await this.prisma.user.findUnique({
+                where: {
+                    username: data.username,
+                },
+            });
+
+            if (user) {
+                return { err: true, errMsg: "Entered username already exists" };
+            } else {
+                const registeredNewUser = await this.prisma.user.create({
+                    data: newUser,
+                });
+
+                if (registeredNewUser) {
+                    return registeredNewUser;
+                } else {
+                    return {
+                        err: true,
+                        errMsg: "Something went wrong",
+                    };
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 }

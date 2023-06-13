@@ -2,8 +2,7 @@ import * as common from "@nestjs/common";
 import * as swagger from "@nestjs/swagger";
 import { UserService } from "./user.service";
 import { UserControllerBase } from "./base/user.controller.base";
-import { Get, Post, Query, Body } from "@nestjs/common";
-import { Request } from "express";
+import { Post, Body } from "@nestjs/common";
 import { UserRegisterModel } from "./types";
 
 @swagger.ApiTags("user")
@@ -14,7 +13,7 @@ export class UserController extends UserControllerBase {
     }
 
     @Post("login")
-    async userLogin(@Body() data: { userName: string; password: string }) {
+    async userLogin(@Body() data: { username: string; password: string }) {
         console.log(data);
         return await this.userService.userLogin(data);
     }
