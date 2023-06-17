@@ -25,15 +25,17 @@ export class TweetController extends TweetControllerBase {
 
     @Post("like")
     async likeTweet(
-        @Body() data: { userId: string; dateTime: Date; content: string },
+        @Body()
+        data: {
+            tweetId: string;
+            userId: string;
+        },
     ) {
         return await this.tweetService.likeTweet(data);
     }
 
     @Post("dislike")
-    async dislikeTweet(
-        @Body() data: { dislikedUserId: string; tweetId: string },
-    ) {
+    async dislikeTweet(@Body() data: { tweetId: string; userId: string }) {
         return await this.tweetService.dislikeTweet(data);
     }
 }

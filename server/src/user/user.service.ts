@@ -28,7 +28,7 @@ export class UserService extends UserServiceBase {
                 };
             }
         } catch (error) {
-            console.log(error);
+            return error;
         }
     }
 
@@ -74,7 +74,7 @@ export class UserService extends UserServiceBase {
                 }
             }
         } catch (error) {
-            console.log(error);
+            return error;
         }
     }
 }
