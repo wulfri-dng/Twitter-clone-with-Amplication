@@ -10,13 +10,29 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { ArgsType, Field } from "@nestjs/graphql";
+import { ApiProperty } from "@nestjs/swagger";
 import { TweetWhereUniqueInput } from "./TweetWhereUniqueInput";
+import { ValidateNested } from "class-validator";
+import { Type } from "class-transformer";
 import { TweetUpdateInput } from "./TweetUpdateInput";
 
 @ArgsType()
 class UpdateTweetArgs {
+  @ApiProperty({
+    required: true,
+    type: () => TweetWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => TweetWhereUniqueInput)
   @Field(() => TweetWhereUniqueInput, { nullable: false })
   where!: TweetWhereUniqueInput;
+
+  @ApiProperty({
+    required: true,
+    type: () => TweetUpdateInput,
+  })
+  @ValidateNested()
+  @Type(() => TweetUpdateInput)
   @Field(() => TweetUpdateInput, { nullable: false })
   data!: TweetUpdateInput;
 }

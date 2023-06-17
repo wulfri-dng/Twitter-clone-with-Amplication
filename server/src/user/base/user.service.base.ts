@@ -15,8 +15,8 @@ import { Prisma, User } from "@prisma/client";
 export class UserServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.UserFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.UserFindManyArgs>
+  async count<T extends Prisma.UserCountArgs>(
+    args: Prisma.SelectSubset<T, Prisma.UserCountArgs>
   ): Promise<number> {
     return this.prisma.user.count(args);
   }
