@@ -42,6 +42,7 @@ export class UserService extends UserServiceBase {
 
             const newUser = {
                 username: data.username,
+                name: data.name,
                 email: data.email,
                 password: data.password,
                 birthday: userBirthday.toISOString(),

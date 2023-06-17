@@ -1,5 +1,6 @@
 export type UserRegisterModel = {
     username: string;
+    name: string;
     email: string;
     password: string;
     year: number;
