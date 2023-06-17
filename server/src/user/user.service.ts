@@ -17,8 +17,6 @@ export class UserService extends UserServiceBase {
                 },
             });
 
-            console.log(user);
-
             if (user?.password === data.password) {
                 return user;
             } else {
