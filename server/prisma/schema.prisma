@@ -11,20 +11,20 @@ model User {
   birthday    DateTime
   email       String
   id          String   @id @default(auto()) @map("_id") @mongo.ObjectId
-  likedTweets Json
+  likedTweets Json?
   name        String
   password    String
   roles       Json
-  tweets      Json
+  tweets      Json?
   username    String   @unique
 }
 
 model Tweet {
-  comments  Json
-  content   String
+  comments  Json?
+  content   String?
   dateTime  DateTime
   id        String   @id @default(auto()) @map("_id") @mongo.ObjectId
-  likeCount Int
+  likeCount Int?
   userId    String
-  viewCount Int
+  viewCount Int?
 }

@@ -12,27 +12,33 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsJSONValue } from "@app/custom-validators";
+import { IsOptional, IsString, IsDate, IsInt } from "class-validator";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
-import { IsString, IsDate, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
 class TweetCreateInput {
   @ApiProperty({
-    required: true,
+    required: false,
   })
   @IsJSONValue()
-  @Field(() => GraphQLJSON)
-  comments!: InputJsonValue;
+  @IsOptional()
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  comments?: InputJsonValue;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: String,
   })
   @IsString()
-  @Field(() => String)
-  content!: string;
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  content?: string | null;
 
   @ApiProperty({
     required: true,
@@ -43,12 +49,15 @@ class TweetCreateInput {
   dateTime!: Date;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: Number,
   })
   @IsInt()
-  @Field(() => Number)
-  likeCount!: number;
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  likeCount?: number | null;
 
   @ApiProperty({
     required: true,
@@ -59,12 +68,15 @@ class TweetCreateInput {
   userId!: string;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: Number,
   })
   @IsInt()
-  @Field(() => Number)
-  viewCount!: number;
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  viewCount?: number | null;
 }
 
 export { TweetCreateInput as TweetCreateInput };
