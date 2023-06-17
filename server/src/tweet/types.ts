@@ -1,14 +1,6 @@
-export interface TweetModel {
-    comments: [];
-    content: string | null;
-    dateTime: Date;
-    id: string;
-    likeCount: number | null;
-    userId: string;
-    viewCount: number | null;
-}
+import { Tweet } from ".prisma/client";
 
-export interface UpdatedTweetModel extends TweetModel {
+export interface UpdatedTweetModel extends Tweet {
     userName: string;
     name: string;
 }

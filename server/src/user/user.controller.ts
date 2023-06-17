@@ -14,13 +14,11 @@ export class UserController extends UserControllerBase {
 
     @Post("login")
     async userLogin(@Body() data: { username: string; password: string }) {
-        console.log(data);
         return await this.userService.userLogin(data);
     }
 
     @Post("register")
     async userRegister(@Body() data: UserRegisterModel) {
-        console.log(data);
         return await this.userService.userRegister(data);
     }
 }
