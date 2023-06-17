@@ -55,6 +55,14 @@ class User {
 
   @ApiProperty({
     required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  name!: string;
+
+  @ApiProperty({
+    required: true,
   })
   @IsJSONValue()
   @Field(() => GraphQLJSON)

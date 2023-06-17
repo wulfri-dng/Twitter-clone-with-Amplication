@@ -12,6 +12,7 @@ https://docs.amplication.com/how-to/custom-code
 import { ArgsType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { TweetWhereInput } from "./TweetWhereInput";
+import { IsOptional, ValidateNested, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 import { TweetOrderByInput } from "./TweetOrderByInput";
 
@@ -21,6 +22,8 @@ class TweetFindManyArgs {
     required: false,
     type: () => TweetWhereInput,
   })
+  @IsOptional()
+  @ValidateNested()
   @Field(() => TweetWhereInput, { nullable: true })
   @Type(() => TweetWhereInput)
   where?: TweetWhereInput;
@@ -29,6 +32,8 @@ class TweetFindManyArgs {
     required: false,
     type: [TweetOrderByInput],
   })
+  @IsOptional()
+  @ValidateNested({ each: true })
   @Field(() => [TweetOrderByInput], { nullable: true })
   @Type(() => TweetOrderByInput)
   orderBy?: Array<TweetOrderByInput>;
@@ -37,6 +42,8 @@ class TweetFindManyArgs {
     required: false,
     type: Number,
   })
+  @IsOptional()
+  @IsInt()
   @Field(() => Number, { nullable: true })
   @Type(() => Number)
   skip?: number;
@@ -45,6 +52,8 @@ class TweetFindManyArgs {
     required: false,
     type: Number,
   })
+  @IsOptional()
+  @IsInt()
   @Field(() => Number, { nullable: true })
   @Type(() => Number)
   take?: number;

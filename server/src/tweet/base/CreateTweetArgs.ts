@@ -10,10 +10,19 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { ArgsType, Field } from "@nestjs/graphql";
+import { ApiProperty } from "@nestjs/swagger";
 import { TweetCreateInput } from "./TweetCreateInput";
+import { ValidateNested } from "class-validator";
+import { Type } from "class-transformer";
 
 @ArgsType()
 class CreateTweetArgs {
+  @ApiProperty({
+    required: true,
+    type: () => TweetCreateInput,
+  })
+  @ValidateNested()
+  @Type(() => TweetCreateInput)
   @Field(() => TweetCreateInput, { nullable: false })
   data!: TweetCreateInput;
 }
