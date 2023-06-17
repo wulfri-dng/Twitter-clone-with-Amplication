@@ -12,33 +12,27 @@ https://docs.amplication.com/how-to/custom-code
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsJSONValue } from "@app/custom-validators";
-import { IsOptional, IsString, IsDate, IsInt } from "class-validator";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
+import { IsString, IsDate, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class Tweet {
   @ApiProperty({
-    required: false,
+    required: true,
   })
   @IsJSONValue()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
+  @Field(() => GraphQLJSON)
   comments!: JsonValue;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: String,
   })
   @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  content!: string | null;
+  @Field(() => String)
+  content!: string;
 
   @ApiProperty({
     required: true,
@@ -57,15 +51,12 @@ class Tweet {
   id!: string;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: Number,
   })
   @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  likeCount!: number | null;
+  @Field(() => Number)
+  likeCount!: number;
 
   @ApiProperty({
     required: true,
@@ -76,15 +67,12 @@ class Tweet {
   userId!: string;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: Number,
   })
   @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  viewCount!: number | null;
+  @Field(() => Number)
+  viewCount!: number;
 }
 
 export { Tweet as Tweet };
