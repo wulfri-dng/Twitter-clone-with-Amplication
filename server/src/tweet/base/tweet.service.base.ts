@@ -15,8 +15,8 @@ import { Prisma, Tweet } from "@prisma/client";
 export class TweetServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.TweetFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.TweetFindManyArgs>
+  async count<T extends Prisma.TweetCountArgs>(
+    args: Prisma.SelectSubset<T, Prisma.TweetCountArgs>
   ): Promise<number> {
     return this.prisma.tweet.count(args);
   }

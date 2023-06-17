@@ -38,7 +38,7 @@ class TweetUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  content?: string | null;
+  content?: string;
 
   @ApiProperty({
     required: false,
@@ -60,7 +60,7 @@ class TweetUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  likeCount?: number | null;
+  likeCount?: number;
 
   @ApiProperty({
     required: false,
@@ -82,7 +82,7 @@ class TweetUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  viewCount?: number | null;
+  viewCount?: number;
 }
 
 export { TweetUpdateInput as TweetUpdateInput };
