@@ -4,32 +4,31 @@ import Search from '../../shared/Icons/Search';
 export const RightSideUserPreview = () => {
     const [searchText, setSearchText] = useState('');
 
-    // TODO: Update trends
     const trends = [
         {
-            title: 'iPhone 12',
-            tweetsCount: '11.6k',
-            category: 'Technology',
+            title: '#RockstarGame',
+            tweetsCount: '1,098',
+            category: 'Gaming',
         },
         {
-            title: 'LinkedIn',
-            tweetsCount: '51.1K',
-            category: 'Business & finance',
+            title: '#JioCinema',
+            tweetsCount: '6,317',
+            category: 'Entertainment',
         },
         {
-            title: 'John Cena',
-            tweetsCount: '1,200',
-            category: 'Sports',
+            title: '#BlackMirror',
+            tweetsCount: '9,880',
+            category: 'Entertainment',
         },
         {
-            title: '#Microsoft',
-            tweetsCount: '3,022',
-            category: 'Business & finance',
+            title: 'Lilian Muli',
+            tweetsCount: '2,899',
+            category: 'Family & relationships ',
         },
         {
-            title: '#DataSciencve',
-            tweetsCount: '18.6k',
-            category: 'Technology',
+            title: '#FukraInsaan',
+            tweetsCount: '11.1K ',
+            category: 'Entertainment',
         },
     ];
 
